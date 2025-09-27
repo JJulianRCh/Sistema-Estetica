@@ -3,13 +3,6 @@ import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
 import { sanitize } from 'mongo-sanitize'; // Para sanitizar los valores
 
-// Con esto validamos el formato del email
-// Se asegura que sea de tipo string y que cumpla con la expresion
-function validarEmail(email) {
-  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return typeof email === "string" && regex.test(email);
-}
-
 export async function POST(request) {
   try {
     const client = await clientPromise;
@@ -37,8 +30,10 @@ export async function POST(request) {
 
     // Se validan que los datos cumplan con los requisitos mínimos
     if (
-      typeof nombre !== 'string' || nombre.length < 2
-      || typeof email !== 'string' || !validarEmail(email)
+      typeof nombre !== 'string' || !/^[a-zA-ZÀ-ÿ\s]{2,}$/.test(nombre)
+      || typeof apellido !== 'string' || (apellido && !/^[a-zA-ZÀ-ÿ\s]{2,}$/.test(apellido))
+      || typeof telefono !== 'string' || (telefono && !/^\+?[0-9\s\-]{7,15}$/.test(telefono))
+      || typeof email !== 'string' || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
       || typeof password !== 'string'
     ) {
       return NextResponse.json(

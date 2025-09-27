@@ -216,7 +216,7 @@ export default function Cuenta() {
                   value={registerData.password}
                   onChange={handleRegisterChange}
                   disabled={loading}
-                  placeholder="Mínimo 6 caracteres"
+                  placeholder="Mínimo 8 caracteres"
                   required
                 />
               </div>
