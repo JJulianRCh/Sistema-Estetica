@@ -2,7 +2,7 @@ import clientPromise from '@/lib/mongo';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { NextResponse } from 'next/server';
-import { sanitize } from 'mongo-sanitize'; // Para sanitizar los valores
+import sanitize from 'mongo-sanitize'; // Para sanitizar los valores
 
 const loginIntentos = {}; // Para rastrear intentos de login por IP
 

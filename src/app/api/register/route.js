@@ -1,7 +1,7 @@
 import clientPromise from '@/lib/mongo';
 import bcrypt from 'bcryptjs';
 import { NextResponse } from 'next/server';
-import { sanitize } from 'mongo-sanitize'; // Para sanitizar los valores
+import sanitize from 'mongo-sanitize'; // Para sanitizar los valores
 
 export async function POST(request) {
   try {
